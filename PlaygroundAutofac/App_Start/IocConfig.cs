@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Web.Http;
 using Autofac;
+using Autofac.Features.Variance;
 using Autofac.Integration.WebApi;
 
 namespace PlaygroundAutofac
@@ -24,6 +25,12 @@ namespace PlaygroundAutofac
                 .MultiKeyed<IEventTypeStrategyFinder>(type => type.GetCustomAttributes<EventTypeAttribute>().Select(a => a.EventTypeId))
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
+
+            builder.RegisterType<OrderReviewRemoveHandler>().AsImplementedInterfaces();
+
+            builder.RegisterSource(new ContravariantRegistrationSource());
+
+            builder.RegisterEventing();
 
             var container = builder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);

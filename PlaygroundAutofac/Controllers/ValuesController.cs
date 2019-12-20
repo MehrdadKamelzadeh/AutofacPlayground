@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Autofac;
+using Autofac.Events;
 
 namespace PlaygroundAutofac.Controllers
 {
@@ -9,19 +11,22 @@ namespace PlaygroundAutofac.Controllers
         private readonly ISomethingService _somethingService;
         private readonly IEventTypeStrategyFinder _eventTypeStrategyFinder;
         private readonly IComponentContext _componentContext;
+        private readonly IAsyncEventPublisher _eventPublisher;
 
-        public ValuesController(ISomethingService somethingService, IEventTypeStrategyFinder eventTypeStrategyFinder, IComponentContext componentContext)
+        public ValuesController(ISomethingService somethingService, IEventTypeStrategyFinder eventTypeStrategyFinder, IComponentContext componentContext, IAsyncEventPublisher eventPublisher)
         {
             _somethingService = somethingService;
             _eventTypeStrategyFinder = eventTypeStrategyFinder;
             _componentContext = componentContext;
+            _eventPublisher = eventPublisher;
         }
         // GET api/values
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<string>> Get()
         {
+            await _eventPublisher.PublishAsync(new OrderDeletedEventArgs() { OrderId = 1 });
             _componentContext.ResolveKeyed<IEventTypeStrategyFinder>("1").ExecuteStrategy();
             _componentContext.ResolveKeyed<IEventTypeStrategyFinder>("4").ExecuteStrategy();
-            
+
             return new string[] { "value1", "value2" };
         }
 
