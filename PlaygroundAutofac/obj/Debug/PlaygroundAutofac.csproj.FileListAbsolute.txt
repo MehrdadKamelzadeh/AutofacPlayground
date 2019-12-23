@@ -182,3 +182,5 @@ C:\Users\mkamelzadeh\source\repos\AutofacPlayground\PlaygroundAutofac\obj\Debug\
 C:\Users\mkamelzadeh\source\repos\AutofacPlayground\PlaygroundAutofac\obj\Debug\PlaygroundAutofac.csproj.CopyComplete
 C:\Users\mkamelzadeh\source\repos\AutofacPlayground\PlaygroundAutofac\obj\Debug\PlaygroundAutofac.dll
 C:\Users\mkamelzadeh\source\repos\AutofacPlayground\PlaygroundAutofac\obj\Debug\PlaygroundAutofac.pdb
+C:\Users\mkamelzadeh\source\repos\AutofacPlayground\PlaygroundAutofac\bin\PAF.Infrastucture.dll
+C:\Users\mkamelzadeh\source\repos\AutofacPlayground\PlaygroundAutofac\bin\PAF.Infrastucture.pdb

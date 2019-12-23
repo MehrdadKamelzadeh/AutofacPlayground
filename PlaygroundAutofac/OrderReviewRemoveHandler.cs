@@ -9,9 +9,9 @@ namespace PlaygroundAutofac
 {
     public class OrderReviewRemoveHandler : IHandleEventAsync<OrderDeletedEventArgs>
     {
-        public Task HandleAsync(OrderDeletedEventArgs @event)
+        public async Task HandleAsync(OrderDeletedEventArgs @event)
         {
-            throw new NotImplementedException();
+            var x = 2;
         }
     }
 }
